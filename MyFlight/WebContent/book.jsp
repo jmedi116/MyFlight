@@ -2,13 +2,6 @@
     pageEncoding="ISO-8859-1"%>
     <%@page import="MyFlight.SearchManager" %>
     <%@page import="MyFlight.Flight" %>
-<%
-	String flightNumber=request.getParameter("flight_number");
-	String date=request.getParameter("date");
-	SearchManager s=new SearchManager();
-	Flight f=s.searchFlight(flight_number, date);
-	
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <style>
@@ -37,6 +30,14 @@ top: 1%;
 <title>MyFlight</title>
 </head>
 <body>
+<%
+	String flightNumber=request.getParameter("flight_number");
+	String date=request.getParameter("date");
+	SearchManager s=new SearchManager();
+	Flight f=s.searchSingleFlight(flightNumber, date);
+
+	
+%>
 <div class="header">
 <jsp:include page="header.jsp"/>
 </div>
