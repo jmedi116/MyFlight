@@ -77,7 +77,7 @@ Book
 </tr>
   <%
      for(int i=0;i<list.size();i++){
-    	 	out.println("<tr><td>"+list.get(i).getDate()+"</td><td>"+list.get(i).getOrigin()+"</td><td>"+list.get(i).getDestination()+"</td><td>"+list.get(i).getTime()+"</td><td>"+list.get(i).getAvailableCoach()+"</td><td>"+list.get(i).getAvailableEconomyPlus()+"</td><td>"+list.get(i).getAvailableFirstClass()+"</td><td><a href='book.jsp' target='_blank'>Book</a></td></tr>");    	 
+    	 	out.println("<tr><td>"+list.get(i).getDate()+"</td><td>"+list.get(i).getOrigin()+"</td><td>"+list.get(i).getDestination()+"</td><td>"+list.get(i).getTime()+"</td><td>"+list.get(i).getAvailableCoach()+"</td><td>"+list.get(i).getAvailableEconomyPlus()+"</td><td>"+list.get(i).getAvailableFirstClass()+"</td><td><a href='book.jsp?flight_number="+list.get(i).getFlightNumber()+"&date="+list.get(i).getDate()+"' target='_blank'>Book</a></td></tr>");    	 
      }
   %>
  </table>
