@@ -156,7 +156,7 @@ public class SearchManager {
 			
 			ResultSet rs=null;
 			
-			String query="SELECT * FROM user as a WHERE a.email='"+email+"' and role=1";
+			String query="SELECT * FROM user as a WHERE a.email='"+email+"' and role_id=1";
 			System.out.println(query);
 
 			try {
@@ -169,7 +169,8 @@ public class SearchManager {
 			 try {
 				while (rs.next())
 				  {
-					p=new RegisteredUser(rs.getString("email"),rs.getString("name"), rs.getString("phone"),Integer.parseInt(rs.getString("role")));
+					p=new RegisteredUser(rs.getString("email"),rs.getString("name"), rs.getString("phone"),Integer.parseInt(rs.getString("role_id")));
+					System.out.println(p.getName());
 				  }
 				con.close();
 			} catch (SQLException e) {

@@ -46,6 +46,7 @@ input[type=submit]{
 	String email=request.getParameter("email");
 	SearchManager s=new SearchManager();
 	Person p=s.searchPerson(email);
+	System.out.println("email"+p.getEmail());
 	p.delete();
 	response.sendRedirect("Home.jsp");
 %>
