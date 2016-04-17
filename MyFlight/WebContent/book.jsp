@@ -130,7 +130,7 @@ else
 	}
 	Reservation r=new Reservation(f,p.getEmail(),names,classToBook);
 	r.book();
-	f.book();
+	f.book(seats, classToBook);
 	response.sendRedirect("reservations.jsp");
 } 
 }%>
