@@ -37,11 +37,13 @@ String srchFromFlight=request.getParameter("srchFromFlight");
 String srchToFlight=request.getParameter("srchToFlight");
 String fromDate=request.getParameter("fromDate");
 String toDate=request.getParameter("toDate");
-int passengers=1;//Integer.parseInt(request.getParameter("passengers"));
+int seats=Integer.parseInt(request.getParameter("passengers"));
+System.out.println("setting seats:"+seats);
+session.setAttribute("seats", seats);
 boolean nonstop=!(request.getParameter("nonstop")==null);
 
 
-ArrayList<Flight> list= s.searchFlight(srchFromFlight, srchToFlight, fromDate, passengers, nonstop);
+ArrayList<Flight> list= s.searchFlight(srchFromFlight, srchToFlight, fromDate, seats, nonstop);
 %>
 <body>
 <div class="header">

@@ -9,10 +9,7 @@ if(session.getAttribute("user")==null){
 		out.println("You need to login in order to access this page");
 		response.setHeader("Refresh", "5;url=Home.jsp");
 		}
-	SearchManager s=new SearchManager();
-	Person p=(Person)session.getAttribute("user");
-	String email=p.getEmail();
-	String results=s.getReservationsByUser(email);
+else{
 	
 
 %>
@@ -56,6 +53,8 @@ if(request.getParameter("submitButton")==null){
 	String date=request.getParameter("date");
 	SearchManager s=new SearchManager();
 	f=s.searchSingleFlight(flightNumber, date);
+	int seats=(int)session.getAttribute("seats");
+	System.out.println("seats="+seats);
 	session.setAttribute("flight", f);
 	
 %>
@@ -92,33 +91,16 @@ Please select the number of seats to buy:
 </tr>
 </table>
 <form action="book.jsp" method="post">
-<Select name="coachSeats" id="coachSeats">
-<option value="0" selected>Coach Seats</option>
-<option value="1">1</option>
-<option value="1">2</option>
-<option value="1">3</option>
-<option value="1">4</option>
-<option value="1">5</option>
-<option value="1">6</option>
+<Select name="class" id="class">
+<option value="0" selected>Select Class to book</option>
+<option value="coach">Coach</option>
+<option value="economyPlus">Economy Plus</option>
+<option value="firstClass">First Class</option>
 </Select>
-<Select name="economyPlus" id="economyPlus">
-<option value="0" selected>Economy Seats</option>
-<option value="1">1</option>
-<option value="1">2</option>
-<option value="1">3</option>
-<option value="1">4</option>
-<option value="1">5</option>
-<option value="1">6</option>
-</Select>
-<Select name="firstClass" id="firstClass">
-<option value="0" selected>First Class</option>
-<option value="1">1</option>
-<option value="1">2</option>
-<option value="1">3</option>
-<option value="1">4</option>
-<option value="1">5</option>
-<option value="1">6</option>
-</Select>
+<%
+
+out.println("You have selected to book "+seats+"seats on the flight, please provide the names of the passengers: ");
+%>
 <br/>
 <br/>
 
@@ -135,11 +117,10 @@ else
 {
 	f=(Flight)session.getAttribute("flight");
 	System.out.println(f.getAvailableEconomyPlus());
-	int coach=Integer.parseInt(request.getParameter("coachSeats"));
-	int economy=Integer.parseInt(request.getParameter("economyPlus"));
-	int first=Integer.parseInt(request.getParameter("firstClass"));
+	String classToBook=request.getParameter("class");
 	f.book();
 	response.sendRedirect("reservations.jsp");
-} %>
+} 
+}%>
 </body>
 </html>

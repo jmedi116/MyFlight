@@ -1,5 +1,10 @@
 package MyFlight;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class Flight {
 	private String flightNumber;
 	private String date;
@@ -47,7 +52,25 @@ public class Flight {
 		return availableFirstClass;
 	}
 	public void book(){
-			
+	/*	Connection con = null;
+		Statement st = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/frs","root","");
+			st = con.createStatement();
+	   String sql = "INSERT INTO login VALUES ('"+email+"','"+hash+"')";
+			st.executeUpdate(sql);
 		
+		con.close();
+
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}	
+		*/
 	}
 }
