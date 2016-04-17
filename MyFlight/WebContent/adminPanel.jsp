@@ -6,6 +6,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>
+         $(function() {
+            $( "#date" ).datepicker({
+               dateFormat:"yy-mm-dd",
+               showOn: "button",
+               buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+               buttonImageOnly: true,
+               buttonText: 'From',
+            minDate: "dateToday"
+            });
+         });
+      </script>
 <style>
 body{
 	background-image: url("http://localhost/img/homeBackrgound.jpg");
@@ -32,7 +47,7 @@ input[type=submit]{
 	font-weight: bold;
 	position: absolute;
 	width:45%;
-	height:30%;
+	height:45%;
 	background: #ffcc99;
 	border-width:0px 1px 1px 0px;
 }
@@ -63,15 +78,40 @@ else {
 <div class="panel">
 <form action="adminPanel.jsp" method=post>
 <select name="action">
-<option value="0" selected>Select the action to apply</option>
-<option value="addFlight">Add Flight</option>
-<option value="deleteFlight">Delete Flight</option>
-<option value="changePrices">Change Price</option>
-<option value="deleteUsers">Delete User</option>
+<option value=0 selected>Select the action to apply</option>
+<option value=1>Add Flight</option>
+<option value=2>Delete Flight</option>
+<option value=3>Change Price</option>
+<option value=4>Delete User</option>
 </select>
+<br/>
+<input type="submit" value="Continue" name="submitButton">
 </form>
 </div>
-<%} 
+<%}
+	else if (Integer.parseInt(request.getParameter("action"))==1){
+	%>
+<div class="panel">
+Input Flight Details:
+	<form action="insertFlight.jsp" method=post>
+	<table>
+	<tr><td>Flight Number:</td><td colspan="3"> <input type="text" name="flightNumber"/></td></tr>
+	<tr><td>Aircraft:</td><td colspan="3"> <input type="text" name="aircraftNumber"/></td></tr>
+	<tr><td>Date:</td><td colspan="3"><input type="text" name="date" id="date"/></td></tr>
+	<tr><td>Time:</td><td colspan="3"><input type="text" name="time"/></td></tr>
+	<tr><td>From:</td><td colspan="3"><input type="text" name="from"/></td></tr>
+	<tr><td>To:</td><td colspan="3"><input type="text" name="to"/></td></tr>
+	<tr><td>Coach Seats:</td><td> <input type="text" name="seatsCoach"/></td><td>Price:</td><td> <input type="text" name="priceCoach"/></td></tr>
+	<tr><td>Economy Plus Seats:</td><td><input type="text" name="seatsEconomyPlus"/></td><td>Price:</td><td> <input type="text" name="priceEconomy"/></td></tr>
+	<tr><td>First Class Seats:</td><td><input type="text" name="seatsFirstClass"/></td><td>Price:</td><td> <input type="text" name="priceFirst"/></td></tr>
+		</table>
+	<input type="submit" value="Continue" name="submitButton">
+	</form>
+</div>
+	
+	<%
+	
+	}
 }
 }%>
 </body>
