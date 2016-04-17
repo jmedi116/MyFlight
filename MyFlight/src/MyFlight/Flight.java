@@ -105,4 +105,26 @@ public class Flight {
 			e1.printStackTrace();
 		}	
 	}
+	public void delete(){
+		Connection con = null;
+		Statement st = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/frs","root","");
+			st = con.createStatement();
+	   String sql = "Delete from flight Where flight_number='"+flightNumber+"' and date='"+date+"'";
+	   System.out.println("SQL="+sql);
+	   st.executeUpdate(sql);
+		con.close();
+
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+	}
 }

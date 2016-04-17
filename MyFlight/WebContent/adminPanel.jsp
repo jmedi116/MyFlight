@@ -113,7 +113,16 @@ Input Flight Details:
 	
 	}
 else if (Integer.parseInt(request.getParameter("action"))==2){
-		
+	%>
+	<div class="panel">
+	Select Flight to delete:
+	<form method="post" action="deleteFlight.jsp">
+	Flight Number: <input type="text" name="flightNumber"/> <br/>
+	Date: <input type="text" name="date"/>
+	<input type="submit" value="Continue" name="submitButton">
+	</form>
+	</div>
+	<%
 	}
 else if (Integer.parseInt(request.getParameter("action"))==3){
 	
