@@ -36,7 +36,7 @@ public class Reservation {
 		try {
 			digest = MessageDigest.getInstance("MD5");
 			digest.update(cad.getBytes(),0,cad.length());
-			hash=new BigInteger(1,digest.digest()).toString(5);
+			hash=new BigInteger(1,digest.digest()).toString(1);
 			System.out.println("here");
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
@@ -50,6 +50,7 @@ public class Reservation {
 		 SimpleDateFormat ft = new SimpleDateFormat("yyMMddhhmmssMs");
 		 String datetime = ft.format(dNow);
 		 String reservation=hashString(datetime);
+		 System.out.println("reservation: "+reservation);
 		 return reservation;
 	}
 	public void book(){
@@ -64,6 +65,7 @@ public class Reservation {
 			st.executeUpdate(sql);
 			for(int i=1;i<names.length;i++){ 
 			sql = "INSERT INTO reservation_users VALUES ('"+reservation_number+"','"+names[i]+"')";
+			System.out.println(sql);
 			st.executeUpdate(sql);			
 			}
 			sql = "INSERT INTO reservation_details VALUES ('"+reservation_number+"','"+flight.getDate()+"','"+flight.getFlightNumber()+"','"+classReserved+"')";
