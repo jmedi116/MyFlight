@@ -36,7 +36,7 @@ input[type=submit]{
 	font-weight: bold;
 	position: absolute;
 	width:45%;
-	height:30%;
+	height:45%;
 	background: #ffcc99;
 	border-width:0px 1px 1px 0px;
 }
@@ -53,7 +53,7 @@ if(request.getParameter("submitButton")==null){
 	String date=request.getParameter("date");
 	SearchManager s=new SearchManager();
 	f=s.searchSingleFlight(flightNumber, date);
-	int seats=(int)session.getAttribute("seats");
+	int seats=(Integer)session.getAttribute("seats");
 	System.out.println("seats="+seats);
 	session.setAttribute("flight", f);
 	
@@ -97,9 +97,13 @@ Please select the number of seats to buy:
 <option value="economyPlus">Economy Plus</option>
 <option value="firstClass">First Class</option>
 </Select>
+<br/><br/>
 <%
 
-out.println("You have selected to book "+seats+"seats on the flight, please provide the names of the passengers: ");
+out.println("You have selected to book "+seats+" seats on the flight, please provide the names of the passengers: <br/>");
+for(int i=1;i<=seats;i++){
+		out.println("<br/>Passenger "+i+" <input type='text' name='passenger"+i+"'/>");
+}
 %>
 <br/>
 <br/>
@@ -118,6 +122,14 @@ else
 	f=(Flight)session.getAttribute("flight");
 	System.out.println(f.getAvailableEconomyPlus());
 	String classToBook=request.getParameter("class");
+	int seats=(Integer)session.getAttribute("seats");
+	Person p=(Person)session.getAttribute("user");
+	String [] names=new String[seats];
+	for(int j=1;j<seats;j++){
+			names[j]=request.getParameter("passenger"+j);
+	}
+	Reservation r=new Reservation(f,p.getEmail(),names,classToBook);
+	r.book();
 	f.book();
 	response.sendRedirect("reservations.jsp");
 } 
