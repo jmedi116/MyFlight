@@ -85,4 +85,24 @@ public class Flight {
 		}	
 		
 	}
+	public void addFlight(String aircarft, int priceCoach, int priceEconomy, int priceFirst){
+		Connection con = null;
+		Statement st = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/frs","root","");
+			st = con.createStatement();
+			 String sql = "INSERT INTO flight VALUES ('"+flightNumber+"','"+aircarft+"','"+time+"','"+priceCoach+"','"+priceEconomy+"','"+priceFirst+"','"+origin+"','"+destination+"','"+date+"','"+availableCoach+"','"+availableEconomyPlus+"','"+availableFirstClass+"')";
+			st.executeUpdate(sql);		
+		con.close();
+
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}	
+	}
 }
