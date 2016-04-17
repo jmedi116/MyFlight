@@ -113,7 +113,7 @@ public class SearchManager {
 		
 		ResultSet rs=null;
 		
-		String query="SELECT a.reservation_number,b.date, c.Origin, c.end,b.class FROM reservation as A inner join reservation_details as B on a.reservation_number=b.reservation_number inner join intinerary_hdr as c on a.intinerary_id=c.intinerary_id WHERE a.email='"+email+"'";
+		String query="SELECT a.reservation_number,c.date, c.Origin, c.destination ,b.class FROM reservation as A inner join reservation_details as B on a.reservation_number=b.reservation_number inner join flight as C on b.flight=c.flight_number  WHERE a.email='"+email+"'";
 		System.out.println(query);
 
 		try {
@@ -127,7 +127,7 @@ public class SearchManager {
 		 try {
 			while (rs.next())
 			  {
-			  results=results+"<tr><td>"+rs.getString("reservation_number")+"</td><td>"+rs.getString("date")+"</td><td>"+rs.getString("Origin")+"</td><td>"+rs.getString("end")+"</td><td>"+rs.getString("class")+"</td></tr>";
+			  results=results+"<tr><td>"+rs.getString("reservation_number")+"</td><td>"+rs.getString("date")+"</td><td>"+rs.getString("Origin")+"</td><td>"+rs.getString("Destination")+"</td><td>"+rs.getString("class")+"</td></tr>";
 			    
 			  }
 			con.close();

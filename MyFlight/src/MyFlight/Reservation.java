@@ -35,7 +35,7 @@ public class Reservation {
 			st = con.createStatement();
 			String sql = "INSERT INTO reservation VALUES ('"+reservation_number+"','"+email+"')";
 			st.executeUpdate(sql);
-			for(int i=0;i<names.length;i++){
+			for(int i=1;i<names.length;i++){
 			sql = "INSERT INTO reservation_users VALUES ('"+reservation_number+"','"+names[i]+"')";
 			st.executeUpdate(sql);			
 			}
