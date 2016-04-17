@@ -1,9 +1,15 @@
 package MyFlight;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 
 public class Reservation {
 	private String reservation_number;
@@ -21,9 +27,30 @@ public class Reservation {
 		classReserved=classR;
 		
 	}
+	private String hashString(String cad){
+		System.out.println("cad="+cad);
+		if(cad==null) 
+			return null;
+		String hash=null;
+		MessageDigest digest;
+		try {
+			digest = MessageDigest.getInstance("MD5");
+			digest.update(cad.getBytes(),0,cad.length());
+			hash=new BigInteger(1,digest.digest()).toString(5);
+			System.out.println("here");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return hash;
+
+	}
 	public String createReservationNumber(){ //missing 
-		return null;
-		
+		 Date dNow = new Date();
+		 SimpleDateFormat ft = new SimpleDateFormat("yyMMddhhmmssMs");
+		 String datetime = ft.format(dNow);
+		 String reservation=hashString(datetime);
+		 return reservation;
 	}
 	public void book(){
 		Connection con = null;
