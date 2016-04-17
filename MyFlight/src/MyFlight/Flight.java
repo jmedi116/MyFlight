@@ -51,14 +51,26 @@ public class Flight {
 	public int getAvailableFirstClass(){
 		return availableFirstClass;
 	}
-	public void book(){
-	/*	Connection con = null;
+	public void book(int seats, String classToBook){
+		Connection con = null;
 		Statement st = null;
+		switch(classToBook){
+		case "coach":
+			availableCoach-=seats;
+			break;
+		case "economyPlus":
+			availableEconomyPlus-=seats;
+			break;
+		case "firstClass":
+			availableFirstClass-=seats;
+			break;
+		
+		}
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/frs","root","");
 			st = con.createStatement();
-	   String sql = "INSERT INTO login VALUES ('"+email+"','"+hash+"')";
+			String sql="Update flight Set available_coach='"+availableCoach+"',available_economy='"+availableEconomyPlus+"',available_first='"+availableFirstClass+"' Where flight_number='"+flightNumber+"'";
 			st.executeUpdate(sql);
 		
 		con.close();
@@ -71,6 +83,6 @@ public class Flight {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}	
-		*/
+		
 	}
 }
