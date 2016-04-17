@@ -112,6 +112,25 @@ Input Flight Details:
 	<%
 	
 	}
+else if (Integer.parseInt(request.getParameter("action"))==2){
+		
+	}
+else if (Integer.parseInt(request.getParameter("action"))==3){
+	
+}
+else if (Integer.parseInt(request.getParameter("action"))==4){
+%>
+<div class="panel">
+Enter user email address to delete:
+<br/><br/>
+<form action="removeUser.jsp" method=post>
+Email: <input type="text" name="email"/>
+<br/><br/>
+<input type="submit" value="Continue" name="submitButton">
+</form>
+</div>
+<%	
+	}
 }
 }%>
 </body>

@@ -137,6 +137,48 @@ public class SearchManager {
 		}
 		return results;
 	}
+	public Person searchPerson(String email){
+			Person p=null;
+			Connection con = null;
+			Statement st = null;
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				con=DriverManager.getConnection("jdbc:mysql://localhost:3306/frs","root","");
+				st = con.createStatement();
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		    catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			ResultSet rs=null;
+			
+			String query="SELECT * FROM user as a WHERE a.email='"+email+"' and role=1";
+			System.out.println(query);
+
+			try {
+				rs=st.executeQuery(query);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println(rs.toString());
+			 try {
+				while (rs.next())
+				  {
+					p=new RegisteredUser(rs.getString("email"),rs.getString("name"), rs.getString("phone"),Integer.parseInt(rs.getString("role")));
+				  }
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return p;
+		
+	}
 	
 
 		
