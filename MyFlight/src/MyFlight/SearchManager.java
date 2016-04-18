@@ -39,8 +39,7 @@ public class SearchManager {
 				f=new Flight(rs.getString("flight_number"),rs.getString("date"),rs.getString("origin"),rs.getString("destination"),rs.getString("time"),rs.getInt("available_coach"),rs.getInt("available_economy"),rs.getInt("available_first"));
 				
 				/* results=results+"<tr><td>"+rs.getString("date")+"</td><td>"+rs.getString("origin")+"</td><td>"+rs.getString("destination")+"</td><td>"+rs.getString("time")+"</td><td>"+
-			  			rs.getString("available_coach")+"</td><td>"+rs.getString("available_economy")+"</td><td>"+rs.getString("available_first")+"</td><td><a href='book.jsp' target='_blank'>Book</a></td></tr>";*/
-			    
+			  			rs.getString("available_coach")+"</td><td>"+rs.getString("available_economy")+"</td><td>"+rs.getString("available_first")+"</td><td><a href='book.jsp' target='_blank'>Book</a></td></tr>";*/	    
 			  }
 			con.close();
 		} catch (SQLException e) {
@@ -50,7 +49,7 @@ public class SearchManager {
 		return f;
 	
 }
-	public ArrayList<Flight> searchFlight(String srchFromFlight, String srchToFlight, String date, int passengers, boolean nonstop){
+	public ArrayList<Flight> searchFlight(String srchFromFlight, String srchToFlight, String date, String toDate, int passengers, boolean nonstop){
 		Connection con = null;
 		Statement st = null;
 		try {
@@ -67,16 +66,20 @@ public class SearchManager {
 		}
 		
 		ResultSet rs=null;
+		String query=null;
 		if(nonstop){
-		String query="SELECT * FROM flight WHERE origin='"+srchFromFlight+"' AND destination='"+srchToFlight+"' AND CAST(`date` as CHAR)='"+date+"'";
+		query="SELECT * FROM flight WHERE origin='"+srchFromFlight+"' AND destination='"+srchToFlight+"' AND CAST(`date` as CHAR)='"+date+"'";
+		}
+		else{
+		query="Select a.* from flight as a inner join flight as b on a.date=b.date and a.origin=b.destination Where a.origin='"+srchFromFlight+"' and a.date='"+date+"'";	
+			
+		}
 		System.out.println(query);
 		try {
 			rs=st.executeQuery(query);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		System.out.println(rs.toString());
 		}
 		ArrayList<Flight> list=new ArrayList<Flight>();
 		 try {

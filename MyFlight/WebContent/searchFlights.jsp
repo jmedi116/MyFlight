@@ -43,7 +43,7 @@ session.setAttribute("seats", seats);
 boolean nonstop=!(request.getParameter("nonstop")==null);
 
 
-ArrayList<Flight> list= s.searchFlight(srchFromFlight, srchToFlight, fromDate, seats, nonstop);
+ArrayList<Flight> list= s.searchFlight(srchFromFlight, srchToFlight, fromDate, toDate, seats, nonstop);
 %>
 <body>
 <div class="header">
