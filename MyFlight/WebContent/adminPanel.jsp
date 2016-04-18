@@ -90,7 +90,7 @@ else {
 </div>
 <%}
 	else if (Integer.parseInt(request.getParameter("action"))==1){
-	%>
+	%> 
 <div class="panel">
 Input Flight Details:
 	<form action="insertFlight.jsp" method=post>
