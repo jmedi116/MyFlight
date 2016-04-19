@@ -86,9 +86,6 @@ public class SearchManager {
 			  {
 				Flight f=new Flight(rs.getString("flight_number"),rs.getString("date"),rs.getString("origin"),rs.getString("destination"),rs.getString("time"),rs.getInt("available_coach"),rs.getInt("available_economy"),rs.getInt("available_first"));
 				list.add(f);
-				/* results=results+"<tr><td>"+rs.getString("date")+"</td><td>"+rs.getString("origin")+"</td><td>"+rs.getString("destination")+"</td><td>"+rs.getString("time")+"</td><td>"+
-			  			rs.getString("available_coach")+"</td><td>"+rs.getString("available_economy")+"</td><td>"+rs.getString("available_first")+"</td><td><a href='book.jsp' target='_blank'>Book</a></td></tr>";*/
-			    
 			  }
 			con.close();
 		} catch (SQLException e) {
