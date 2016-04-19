@@ -58,6 +58,9 @@ input[type=submit]{
 <title>MyFlightReservation</title>
 </head>
 <body >
+<div class="header">
+<jsp:include page="header.jsp"/>
+</div>
 <%
 if(session.getAttribute("user")==null){
 	out.println("You need to login in order to access this page");
@@ -72,9 +75,6 @@ else {
 	else{
 	if(request.getParameter("submitButton")==null){
 %>
-<div class="header">
-<jsp:include page="header.jsp"/>
-</div>
 <div class="panel">
 <form action="adminPanel.jsp" method=post>
 <select name="action">
@@ -90,7 +90,7 @@ else {
 </div>
 <%}
 	else if (Integer.parseInt(request.getParameter("action"))==1){
-	%> 
+	%>
 <div class="panel">
 Input Flight Details:
 	<form action="insertFlight.jsp" method=post>

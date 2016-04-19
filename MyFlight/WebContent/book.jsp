@@ -5,12 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%
-if(session.getAttribute("user")==null){
-		out.println("You need to login in order to access this page");
-		response.setHeader("Refresh", "5;url=Home.jsp");
-		}
-else{
-	
+
 
 %>
 <style>
@@ -47,6 +42,12 @@ input[type=submit]{
 </head>
 <body>
 <%
+if(session.getAttribute("user")==null){
+	out.println("<div class='results'>You need to login in order to access this page</div>");
+	response.setHeader("Refresh", "5;url=Home.jsp");
+	}
+else{
+
 Flight f=null;
 if(request.getParameter("submitButton")==null){
 	String flightNumber=request.getParameter("flight_number");

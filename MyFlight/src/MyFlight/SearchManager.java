@@ -71,8 +71,7 @@ public class SearchManager {
 		query="SELECT * FROM flight WHERE origin='"+srchFromFlight+"' AND destination='"+srchToFlight+"' AND CAST(`date` as CHAR)='"+date+"'";
 		}
 		else{
-		query="Select a.* from flight as a inner join flight as b on a.date=b.date and a.destination=b.origin Where a.origin='"+srchFromFlight+"' and a.date='"+date+"' and b.destination='"+srchToFlight+"'";	
-			
+		query="select c.* from intinerary_hdr as a inner join intinerary_details as b on a.intinerary_id=b.intinerary_id inner join flight as c on b.step_origin=c.origin and b.step_destination=c.destination where a.origin='"+srchFromFlight+"' and a.end='"+srchToFlight+"' and c.date='"+date+"'";
 		}
 		System.out.println(query);
 		try {
