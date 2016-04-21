@@ -105,6 +105,10 @@ public class Flight {
 			e1.printStackTrace();
 		}	
 	}
+	public void addCapacity(String classToIncrease, int amount){
+			
+		
+	}
 	public void delete(){
 		Connection con = null;
 		Statement st = null;
@@ -127,4 +131,5 @@ public class Flight {
 		}
 		
 	}
+	
 }

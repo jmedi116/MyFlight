@@ -44,7 +44,7 @@ input[type=submit]{
 <%
 if(session.getAttribute("user")==null){
 	out.println("<div class='results'>You need to login in order to access this page</div>");
-	response.setHeader("Refresh", "5;url=Home.jsp");
+	response.setHeader("Refresh", "5;url=login.jsp");
 	}
 else{
 

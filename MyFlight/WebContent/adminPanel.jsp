@@ -93,7 +93,7 @@ else {
 	%>
 <div class="panel">
 Input Flight Details:
-	<form action="insertFlight.jsp" method=post>
+	<form action="insertFlight.jsp" method=post >
 	<table>
 	<tr><td>Flight Number:</td><td colspan="3"> <input type="text" name="flightNumber"/></td></tr>
 	<tr><td>Aircraft:</td><td colspan="3"> <input type="text" name="aircraftNumber"/></td></tr>

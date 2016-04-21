@@ -1,19 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
- <%@page import="MyFlight.SearchManager"%>
-  <%@page import="MyFlight.Person"%>
+  <%@page import="MyFlight.*"%>
    <%@page import="java.sql.*" %>   
 <%@ page import ="javax.sql.*" %>
+<%@page import="java.util.ArrayList" %>
 <%
 if(session.getAttribute("user")==null){
 		out.println("You need to login in order to access this page");
-		response.setHeader("Refresh", "5;url=Home.jsp");
+		response.setHeader("Refresh", "5;url=login.jsp");
 		}
+
 	SearchManager s=new SearchManager();
 	Person p=(Person)session.getAttribute("user");
 	String email=p.getEmail();
-	String results=s.getReservationsByUser(email);
-	
+	ArrayList <Reservation> list=s.getReservationsByUser(email);
+
 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -44,8 +45,8 @@ input[type=submit]{
 	padding-top: 1%;
 	font-weight: bold;
 	position: absolute;
-	width:45%;
-	height:30%;
+	width:65%;
+	height:60%;
 	background: #ffcc99;
 	border-width:0px 1px 1px 0px;
 }
@@ -62,9 +63,14 @@ input[type=submit]{
 <h4>
 Your previously reserved flights:
 </h4>
-<table>
+<table border="1">
+<tr><td>Reservation Number</td><td>Flight</td><td>Date</td><td>Time</td><td>From</td><td>To</td><td>Class Reserved</td><td>Cancel</td></tr>
 <%
-	out.println(results);
+	for(int i=0;i<list.size();i++){
+			Flight f=list.get(i).getFlight();
+			out.println("<tr><td>"+list.get(i).getReservationNumber()+"</td><td>"+f.getFlightNumber()+"</td><td>"+f.getDate()+"</td><td>"+f.getTime()+"</td><td>"+f.getOrigin()+"</td><td>"+f.getDestination()+"</td><td>"+list.get(i).getClassReserved()+"</td><td><a href='cancelReservation.jsp?reservation_number="+list.get(i).getReservationNumber()+"' target='_blank'>Cancel</a></td></tr>");
+		
+	}
 %>
 </table>
 

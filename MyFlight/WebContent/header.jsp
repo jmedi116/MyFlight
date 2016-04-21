@@ -18,12 +18,13 @@ padding-top: 10%;
 <td>
 <a href="Home.jsp"><img src="http://localhost/img/banner.jpg" width="70px" height="70px"/>  </a>
 </td>
-<td width="50%">
+<td width="40%">
 </td>
-<td align="right">
+<td align="left">
 
 <%
 if(session.getAttribute("user")==null){
+	out.print("<h4>Welcome to the Flight Reservation System ");
 %>
 <a href="login.jsp" target="_self">	Login</a>
 <%
@@ -32,6 +33,7 @@ else{
 	Person p=(Person)session.getAttribute("user");
 	out.print("<h4>Welcome "+p.getName());
 %>
+<a href="Home.jsp" target="_self">Home</a>
 <a href="reservations.jsp" target="_self">My Reservations</a>
 <%
 if(p.getRole()==2){

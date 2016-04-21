@@ -33,8 +33,6 @@ String password=request.getParameter("userPassword");
 if(email!=null){
 	System.out.println(password);
 	LoginManager log=new LoginManager(email, password);
-	if(log.validateEmail()){
-		if(log.validatePassword()){
 			Person p=log.login();
 			if(p!=null){
 				session.setAttribute("user", p);	
@@ -42,11 +40,9 @@ if(email!=null){
 				 response.sendRedirect("userPanel.jsp");
 			}
 			else {
-				out.println("Invalid Login");
+				out.println("Invalid Login, you are been redirected to the login page...");
+				response.setHeader("Refresh", "5;url=login.jsp");
 			}
-		}	
-		
-	}
 }
 else{
 %>

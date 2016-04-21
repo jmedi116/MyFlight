@@ -118,7 +118,42 @@ private String hashString(String cad){
 
 }
 public boolean validateEmail(){
-	return true;//pending implementation
+	boolean flag=true;
+	Connection con = null;
+	Statement st = null;
+	try {
+		Class.forName("com.mysql.jdbc.Driver");
+		con=DriverManager.getConnection("jdbc:mysql://localhost:3306/frs","root","");
+		st = con.createStatement();
+	} catch (ClassNotFoundException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+    catch (SQLException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	
+	ResultSet rs=null;
+	String query="SELECT * FROM login WHERE email='"+email+"'";
+	System.out.println(query);//query checkpoint
+	try {
+		rs=st.executeQuery(query);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	 try {
+		if(rs.next()){
+			 System.out.println("rs="+rs);
+			flag=false;
+		}
+	} catch (SQLException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	
+	return flag;
 	
 }
 public boolean validatePassword(){

@@ -42,7 +42,6 @@ System.out.println("setting seats:"+seats);
 session.setAttribute("seats", seats);
 boolean nonstop=!(request.getParameter("nonstop")==null);
 
-
 ArrayList<Flight> list= s.searchFlight(srchFromFlight, srchToFlight, fromDate, toDate, seats, nonstop);
 %>
 <body>

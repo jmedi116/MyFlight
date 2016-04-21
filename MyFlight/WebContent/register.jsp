@@ -37,8 +37,14 @@ if(email!=null){
 	Person p=new RegisteredUser(email,name,phone,1);
 	p.save();
 	LoginManager l=new LoginManager(email,password);
+	if(l.validateEmail()){
 	l.createLogin();
 	 response.sendRedirect("userPanel.jsp");
+	}
+	else{
+		out.println("Email address already exists, please try again...");
+		response.setHeader("Refresh", "5;url=login.jsp");		
+	}
 	}
 else{
 %>

@@ -18,6 +18,15 @@ public class Reservation {
 	private String [] names;
 	private String classReserved;
 	
+	public Reservation(String r,Flight f, String e, String [] nam, String classR){
+		reservation_number=r;
+		flight=f;
+		email=e;
+		names=nam;
+		classReserved=classR;
+		
+	}
+	
 	
 	public Reservation(Flight f, String e, String [] nam, String classR){
 		reservation_number=createReservationNumber();
@@ -26,6 +35,16 @@ public class Reservation {
 		names=nam;
 		classReserved=classR;
 		
+	}
+	public String getReservationNumber(){
+		return reservation_number;
+		
+	}
+	public Flight getFlight(){
+		return flight;
+	}
+	public String getClassReserved(){
+		return classReserved;
 	}
 	private String hashString(String cad){
 		System.out.println("cad="+cad);
@@ -82,4 +101,33 @@ public class Reservation {
 		}
 		
 	}
+	public void Cancel(){
+		Connection con = null;
+		Statement st = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/frs","root","");
+			st = con.createStatement();
+	   String sql = "Delete from reservation_details Where reservation_number='"+reservation_number+"'";
+	   st.executeUpdate(sql);
+	   sql = "Delete from reservation Where reservation_number='"+reservation_number+"'";
+	   System.out.println("SQL="+sql);
+	   st.executeUpdate(sql);
+	   sql = "Delete from reservation_users Where reservation_number='"+reservation_number+"'";
+	   st.executeUpdate(sql);
+	   flight.addCapacity(classReserved,names.length);
+	   con.close();
+
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+	}
+		
+	
 }
