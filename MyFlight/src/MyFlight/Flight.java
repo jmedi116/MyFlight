@@ -106,7 +106,38 @@ public class Flight {
 		}	
 	}
 	public void addCapacity(String classToIncrease, int amount){
+		Connection con = null;
+		Statement st = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/frs","root","");
+			st = con.createStatement();
+			String sql=null;
+			switch(classToIncrease){
+			case "coach":
+				  sql = "Update flight Set available_coach='"+amount+"'Where flight_number='"+flightNumber+"'";
+				break;
+			case "economyPlus":
+				  sql = "Update flight Set available_economy='"+amount+"'Where flight_number='"+flightNumber+"'";
+				break;
+			case "firstClass":
+				  sql = "Update flight Set available_first='"+amount+"'Where flight_number='"+flightNumber+"'";
+				break;
+			default:
+				break;
 			
+			}
+			st.executeUpdate(sql);		
+		con.close();
+
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}	
 		
 	}
 	public void delete(){

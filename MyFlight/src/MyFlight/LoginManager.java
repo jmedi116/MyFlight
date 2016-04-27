@@ -20,8 +20,10 @@ public LoginManager(String eml, String pass){
 	password=pass;
 	System.out.println("pas="+password);
 }
-
-public Person login(){
+/*
+ * login creates the Person object to be used during for the session 
+s*/
+public Person login(){ 
 	Person p=null;
 		String hash=hashString(password);
 		System.out.println(hash);
@@ -99,6 +101,9 @@ public Person login(){
 	}
 	return p;
 }
+/*
+ * aux method used for hashing passwords.
+ */
 private String hashString(String cad){
 	System.out.println("cad="+cad);
 	if(cad==null) 
@@ -117,6 +122,10 @@ private String hashString(String cad){
 	return hash;
 
 }
+
+/*
+ * validates that the email does not exist on the database.
+ */
 public boolean validateEmail(){
 	boolean flag=true;
 	Connection con = null;
@@ -156,10 +165,9 @@ public boolean validateEmail(){
 	return flag;
 	
 }
-public boolean validatePassword(){
-		return true;//pending implementation
-	
-}
+/*
+ * used to register users
+ */
 
 public void createLogin(){
 	Connection con = null;

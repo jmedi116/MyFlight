@@ -8,6 +8,7 @@ body{
 	background-image: url("http://localhost/img/homeBackrgound.jpg");
 	backrgound-repeat: no-repeat;	
 	background-size: cover;
+	background-color: lightblue;
 }
 .header{
 top: 1%;

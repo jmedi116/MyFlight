@@ -10,9 +10,10 @@
 %>
 <style>
 body{
-	background-image: url("http://localhost/img/homeBackrgound.jpg");
+	background-image: url("http://localhost/img/background.png");
 	backrgound-repeat: no-repeat;	
 	background-size: cover;
+	background-color: lightblue;
 }
 .header{
 top: 1%;
@@ -32,7 +33,7 @@ input[type=submit]{
 	position: absolute;
 	width:45%;
 	height:45%;
-	background: #ffcc99;
+	background: #C0C0C0;
 	border-width:0px 1px 1px 0px;
 }
 </style>

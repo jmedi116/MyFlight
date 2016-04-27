@@ -16,7 +16,7 @@ padding-top: 10%;
 <td width="10%">
 </td>
 <td>
-<a href="Home.jsp"><img src="http://localhost/img/banner.jpg" width="70px" height="70px"/>  </a>
+<a href="Home.jsp"><img src="http://localhost/img/banner.png" width="70px" height="90px"/>  </a>
 </td>
 <td width="40%">
 </td>

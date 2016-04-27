@@ -22,9 +22,10 @@ if(session.getAttribute("user")==null){
 <head>
 <style>
 body{
-	background-image: url("http://localhost/img/homeBackrgound.jpg");
+	background-image: url("http://localhost/img/background.png");
 	backrgound-repeat: no-repeat;	
 	background-size: cover;
+	background-color: lightblue;
 }
 select{
 	width: 80%;
@@ -47,7 +48,7 @@ input[type=submit]{
 	position: absolute;
 	width:65%;
 	height:60%;
-	background: #ffcc99;
+	background: #C0C0C0;
 	border-width:0px 1px 1px 0px;
 }
 </style>

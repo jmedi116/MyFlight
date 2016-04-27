@@ -3,6 +3,9 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class SearchManager {
+	/*
+	 * search single flight by flightNumber
+	 */
 	public Flight searchSingleFlight(String flightNumber, String date){
 		Flight f=null;
 		Connection con = null;
@@ -49,6 +52,9 @@ public class SearchManager {
 		return f;
 	
 }
+	/*
+	 * search single reservation by Number
+	 */
 	public Reservation searchSingleReservation(String reservationNumber){
 		Reservation r=null;
 		Flight f=null;
@@ -96,6 +102,9 @@ public class SearchManager {
 		return r;
 	
 }
+	/*
+	 * method for bulk search of flights
+	 */
 	public ArrayList<Flight> searchFlight(String srchFromFlight, String srchToFlight, String date, String toDate, int passengers, boolean nonstop){
 		Connection con = null;
 		Statement st = null;
@@ -141,6 +150,9 @@ public class SearchManager {
 		}
 		return list;
 	}
+	/*
+	 * get all reservations by user
+	 */
 	public ArrayList<Reservation> getReservationsByUser(String email){
 		Connection con = null;
 		Statement st = null;
@@ -190,6 +202,9 @@ public class SearchManager {
 		}
 		return list;
 	}
+	/*
+	 * get Person information
+	 */
 	public Person searchPerson(String email){
 			Person p=null;
 			Connection con = null;
@@ -233,7 +248,9 @@ public class SearchManager {
 			return p;
 		
 	}
-	
+	/*
+	 * get all cities used in the system
+	 */
 	public ArrayList<City> searchCities(){
 		ArrayList<City> list=new ArrayList<City>();
 		Connection con = null;

@@ -9,9 +9,10 @@
 <head>
 <style>
 body{
-	background-image: url("http://localhost/img/homeBackrgound.jpg");
+	background-image: url("http://localhost/img/background.png");
 	backrgound-repeat: no-repeat;	
 	background-size: cover;
+	background-color: lightblue;
 }
 select{
 	width: 80%;
@@ -34,7 +35,7 @@ input[type=submit]{
 	position: absolute;
 	width:45%;
 	height:30%;
-	background: #ffcc99;
+	background: #C0C0C0;
 	border-width:0px 1px 1px 0px;
 }
 </style>
@@ -57,7 +58,7 @@ input[type=submit]{
             	}
             });
             $( "#toDate" ).datepicker({
-                dateFormat:"mm-dd-yy",
+                dateFormat:"yy-mm-dd",
                 showOn: "button",
              buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
                 buttonImageOnly: true,
@@ -78,11 +79,11 @@ ArrayList<City> list=s.searchCities();
 <jsp:include page="header.jsp"/>
 </div>  
 <div class="search">
-<form id="searchFlight" method="post" action="searchFlights.jsp">
+<form id="searchFlight" method="post" action="searchFlights.jsp" onsubmit="return validateForm();">
 <table>
 <tr>
 <td colspan="3">
-<input type="radio" name="flightType" value="roundtrip" checked>Roundtrip
+<input type="radio" name="flightType" value="roundtrip" checked>Round Trip
 <input type="radio" name="flightType" value="oneway">One-Way
 </td>
 </tr>
@@ -156,4 +157,26 @@ for(int i=0;i<list.size();i++){
 </div>
 
 </body>
+<script>
+function validateForm(){
+		var fromDate=document.getElementById("fromDate").value;
+		var toDate=document.getElementById("toDate").value;
+		var srchFromFlight=document.getElementById("srchFromFlight").value;
+		var srchToFlight=document.getElementById("srchToFlight").value;
+		if(srchFromFlight==srchToFlight){
+			alert("There are no flights to the same city...");
+			return false;
+			
+		}
+		if(toDate!=""){
+		if(fromDate>=toDate){
+				alert("Return date must be after departure date");
+				return false;
+			
+		}
+		}
+		return true;
+	
+}
+</script>
 </html>
